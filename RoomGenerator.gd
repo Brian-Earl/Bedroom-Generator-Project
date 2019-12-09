@@ -8,6 +8,10 @@ export (int) var height;
 
 var roomArr = [];
 var roomType;
+
+##var roomBible = {"name": "", "Letter": "", "KeyWords": [], "Desc": "", "onClick":"" }; 
+
+var bed = {"name": "bed", "Letter": "b", "KeyWords": ["blue", "Leather", "old"], "Desc": "This is a blue bed", "onClick": "examine"};
 enum ROOM{
 	Bedroom
 	}
