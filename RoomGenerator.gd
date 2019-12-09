@@ -16,6 +16,7 @@ enum ROOM_OBJ{
 	empty,
 	bed
 	}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	roomArr = make_2d_array();
@@ -39,7 +40,8 @@ func make_2d_array():
 		for j in height:
 			array[i].append(fillRoom());
 	return array;
-	
+
+
 func fillRoom():
 	var randObj = rand_range(0, ROOM_OBJ.size())
 	
@@ -48,6 +50,8 @@ func fillRoom():
 		
 	else:
 		return ROOM_OBJ.empty;
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
