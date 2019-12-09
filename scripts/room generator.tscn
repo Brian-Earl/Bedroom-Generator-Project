@@ -4,6 +4,7 @@
 
 [node name="Node2D" type="Node2D"]
 editor/display_folded = true
+scale = Vector2( 1.05212, 0.576369 )
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource( 1 )
