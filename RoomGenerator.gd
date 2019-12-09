@@ -9,9 +9,10 @@ export (int) var height;
 var roomArr = [];
 var roomType;
 
-##var roomBible = {"name": "", "Letter": "", "KeyWords": [], "Desc": "", "onClick":"" }; 
+var roomBible = {"name": "", "Letter": "", "KeyWords": [], "Desc": "", "onClick":"" }; 
 
-var bed = {"name": "bed", "Letter": "b", "KeyWords": ["blue", "Leather", "old"], "Desc": "This is a blue bed", "onClick": "examine"};
+var Bed = {"name": "bed", "Letter": "b", "KeyWords": ["blue", "Leather", "old"], "Desc": "This is a blue bed", "onClick": "examine"};
+var test = roomBible.duplicate(true);
 enum ROOM{
 	Bedroom
 	}
@@ -35,6 +36,9 @@ func _ready():
 	#roomType = ROOM_OBJ.values().shuffle()
 	print(ROOM_OBJ.bed);
 	print(ROOM_OBJ.empty);
+	
+	test = editDict(test, "test", "T", ["test","test"], "This is a test", "view");
+	print(test);
 
 
 func make_2d_array():
@@ -54,6 +58,22 @@ func fillRoom():
 		
 	else:
 		return ROOM_OBJ.empty;
+		
+
+func editDict(var dictionary, var name = null, var letter = null, var keyword = null, var desc = null, var onClick = null):
+		if(name != null):
+			dictionary["name"] = name;
+		if(letter != null):
+			dictionary["letter"] = letter;
+		if(keyword != null):
+			dictionary["KeyWords"] = keyword;
+		if(desc != null):
+			dictionary["Desc"] = desc;
+		if(onClick != null):
+			dictionary["onClick"] = onClick;
+			
+		return dictionary;
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
