@@ -1,10 +1,12 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TextTileMap.tres" type="TileSet" id=1]
 
 [node name="RoomDisplayer" type="ColorRect"]
-editor/display_folded = true
-margin_right = 1024.0
-margin_bottom = 200.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
 format = 1

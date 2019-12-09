@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://TextTileMap.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/fonts/Hack/Hack-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+use_filter = true
+font_data = ExtResource( 2 )
 
 [node name="TextDisplay" type="ColorRect"]
 margin_right = 1023.0
@@ -11,7 +17,7 @@ color = Color( 0, 0, 0, 1 )
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 786441, 1, 0, 786445, 2, 0, 786445, 3, 0, 786445, 4, 0, 786445, 5, 0, 786445, 6, 0, 786445, 7, 0, 786445, 8, 0, 786445, 9, 0, 786445, 10, 0, 786445, 11, 0, 786445, 12, 0, 786445, 13, 0, 786445, 14, 0, 786445, 15, 0, 720907, 65536, 0, 720906, 65551, 0, 720906, 131072, 0, 720906, 131087, 0, 720906, 196608, 0, 786440, 196609, 0, 786445, 196610, 0, 786445, 196611, 0, 786445, 196612, 0, 786445, 196613, 0, 786445, 196614, 0, 786445, 196615, 0, 786445, 196616, 0, 786445, 196617, 0, 786445, 196618, 0, 786445, 196619, 0, 786445, 196620, 0, 786445, 196621, 0, 786445, 196622, 0, 786445, 196623, 0, 720908 )
+tile_data = PoolIntArray( 0, 5, 0, 1, 7, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 0, 6, 7, 0, 7, 7, 0, 8, 7, 0, 9, 7, 0, 10, 7, 0, 11, 7, 0, 12, 7, 0, 13, 7, 0, 14, 7, 0, 15, 2, 0, 65536, 1, 0, 65551, 1, 0, 131072, 1, 0, 131087, 1, 0, 196608, 4, 0, 196609, 7, 0, 196610, 7, 0, 196611, 7, 0, 196612, 7, 0, 196613, 7, 0, 196614, 7, 0, 196615, 7, 0, 196616, 7, 0, 196617, 7, 0, 196618, 7, 0, 196619, 7, 0, 196620, 7, 0, 196621, 7, 0, 196622, 7, 0, 196623, 3, 0 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 40.0
@@ -19,4 +25,5 @@ margin_top = 40.0
 margin_right = 980.0
 margin_bottom = 210.0
 rect_scale = Vector2( 1.00199, 1 )
-text = "asdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAv"
+custom_fonts/normal_font = SubResource( 1 )
+text = "asdf"
