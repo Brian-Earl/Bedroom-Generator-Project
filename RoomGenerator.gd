@@ -9,9 +9,9 @@ export (int) var height;
 var roomArr = [];
 var roomType;
 
-var roomBible = {"name": "", "Letter": "", "KeyWords": [], "Desc": "", "onClick":"" }; 
+var roomBible = {"name": " ", "Letter": " ", "KeyWords": [], "Desc": " ", "onClick":" " }; 
 
-var Bed = {"name": "bed", "Letter": "b", "KeyWords": ["blue", "Leather", "old"], "Desc": "This is a blue bed", "onClick": "examine"};
+#var Bed = {"name": "bed", "Letter": "b", "KeyWords": ["blue", "Leather", "old"], "Desc": "This is a blue bed", "onClick": "examine"};
 var test = roomBible.duplicate(true);
 enum ROOM{
 	Bedroom
@@ -25,7 +25,12 @@ enum ROOM_OBJ{
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	roomArr = make_2d_array();
+#	for arr in roomArr:
+#		for item in arr:
+#			print(item.get("Desc", "no dice"));
+		
 	print(roomArr);
+	#print(roomArr);
 	var randRoom = rand_range(1,2)
 	
 	if(randRoom == 1):
@@ -34,11 +39,11 @@ func _ready():
 		roomType = ROOM.Bedroom;
 	
 	#roomType = ROOM_OBJ.values().shuffle()
-	print(ROOM_OBJ.bed);
-	print(ROOM_OBJ.empty);
+	#print(ROOM_OBJ.bed);
+	#print(ROOM_OBJ.empty);
 	
 	test = editDict(test, "test", "T", ["test","test"], "This is a test", "view");
-	print(test);
+	#print(test);
 
 
 func make_2d_array():
@@ -46,35 +51,52 @@ func make_2d_array():
 	for i in width:
 		array.append([]);
 		for j in height:
+			if(i == 0 or i == width-1):
+				array[i].append(1);
+			if(j == 0 or j == height-1):
+				array[i].append(1);
 			array[i].append(fillRoom());
 	return array;
 
 
 func fillRoom():
 	var randObj = rand_range(0, ROOM_OBJ.size())
-	
+	var newObj = roomBible.duplicate(true);
 	if(randObj >= 1):
-		return ROOM_OBJ.bed;
+		return editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view");
 		
 	else:
-		return ROOM_OBJ.empty;
+		return null;
 		
 
 func editDict(var dictionary, var name = null, var letter = null, var keyword = null, var desc = null, var onClick = null):
 		if(name != null):
 			dictionary["name"] = name;
 		if(letter != null):
-			dictionary["letter"] = letter;
+			dictionary["Letter"] = letter;
 		if(keyword != null):
 			dictionary["KeyWords"] = keyword;
 		if(desc != null):
-			dictionary["Desc"] = desc;
+			dictionary["Desc"] = createDesc(dictionary);
 		if(onClick != null):
 			dictionary["onClick"] = onClick;
 			
 		return dictionary;
 	
-
+func createDesc(var dictionary):
+	# A simple grammar - or read from a JSON file
+	var grammarTest = Dictionary()
+	grammarTest["bedsentence"] 	= ["The bed has #colour# sheets with a #pillowFeel# pillow."]
+	grammarTest["pillowFeel"] 		= ["soft", "hard", "flat", "lumpy", "cool", "warm"]
+	grammarTest["colour"]		= ["#tone# #baseColour#"]
+	grammarTest["tone"] 		= ["dark", "light", "pale"]
+	grammarTest["baseColour"] 	= ["red", "green", "blue", "yellow"]
+	var grammar = Tracery.Grammar.new(grammarTest)
+	
+	grammar.addModifiers(Tracery.UniversalModifiers.getModifiers())
+	
+	var desc = grammar.flatten("#bedsentence#");
+	return desc;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
