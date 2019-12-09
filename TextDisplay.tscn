@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TextTileMap.tres" type="TileSet" id=1]
+
+[node name="TextDisplay" type="ColorRect"]
+margin_right = 1024.0
+margin_bottom = 260.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 786441, 1, 0, 786445, 2, 0, 786445, 3, 0, 786445, 4, 0, 786445, 5, 0, 786445, 6, 0, 786445, 7, 0, 786445, 8, 0, 786445, 9, 0, 786445, 10, 0, 786445, 11, 0, 786445, 12, 0, 786445, 13, 0, 786445, 14, 0, 786445, 15, 0, 720907, 65536, 0, 720906, 65551, 0, 720906, 131072, 0, 720906, 131087, 0, 720906, 196608, 0, 786440, 196609, 0, 786445, 196610, 0, 786445, 196611, 0, 786445, 196612, 0, 786445, 196613, 0, 786445, 196614, 0, 786445, 196615, 0, 786445, 196616, 0, 786445, 196617, 0, 786445, 196618, 0, 786445, 196619, 0, 786445, 196620, 0, 786445, 196621, 0, 786445, 196622, 0, 786445, 196623, 0, 720908 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 980.0
+margin_bottom = 210.0
+text = "asdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAasdfuhiashdfuiasohfuiasodhfuiaosdhfuasiodfhuasiodfhuasifdohasuidofhasudifohasudifoasddddddddddddddAv"

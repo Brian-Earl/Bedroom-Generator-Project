@@ -19,6 +19,15 @@ config/name="New Game Project"
 run/main_scene="res://scripts/room generator.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+UserData="*res://addons/github-integration/scripts/user_data.gd"
+IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "github-integration" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
