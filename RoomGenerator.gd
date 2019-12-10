@@ -11,6 +11,9 @@ var roomType;
 
 var roomBible = {"name": " ", "Letter": " ", "KeyWords": [], "Desc": " ", "onClick":" " }; 
 
+onready var RoomDisplay = $"../FullDisplay/RoomDisplayer"
+signal room_done
+
 #var Bed = {"name": "bed", "Letter": "b", "KeyWords": ["blue", "Leather", "old"], "Desc": "This is a blue bed", "onClick": "examine"};
 var test = roomBible.duplicate(true);
 enum ROOM{
@@ -24,12 +27,13 @@ enum ROOM_OBJ{
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	roomArr = make_2d_array();
+	connect("room_done", RoomDisplay, "displayRoom")
+	roomArr = make_2d_array()
 #	for arr in roomArr:
 #		for item in arr:
 #			print(item.get("Desc", "no dice"));
 		
-	print(roomArr);
+	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(1,2)
 	
@@ -43,6 +47,7 @@ func _ready():
 	#print(ROOM_OBJ.empty);
 	
 	test = editDict(test, "test", "T", ["test","test"], "This is a test", "view");
+	emit_signal("room_done",roomArr)
 	#print(test);
 
 
@@ -67,7 +72,7 @@ func fillRoom():
 		
 	else:
 		return null;
-		
+
 
 func editDict(var dictionary, var name = null, var letter = null, var keyword = null, var desc = null, var onClick = null):
 		if(name != null):

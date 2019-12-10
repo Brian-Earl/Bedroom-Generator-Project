@@ -20,8 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="New Game Project"
-run/main_scene="res://scripts/room generator.tscn"
+config/name="Room Generator"
+run/main_scene="res://RoomGeneration.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://TextTileMap.tres" type="TileSet" id=1]
-[ext_resource path="res://assets/fonts/Hack/Hack-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://TextDisplay.gd" type="Script" id=1]
+[ext_resource path="res://TextTileMap.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/fonts/Hack/Hack-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
 use_filter = true
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [node name="TextDisplay" type="ColorRect"]
 margin_right = 1023.0
 margin_bottom = 260.0
 rect_scale = Vector2( 1.87661, 1.54868 )
 color = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 format = 1
 tile_data = PoolIntArray( 0, 5, 0, 1, 7, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 0, 6, 7, 0, 7, 7, 0, 8, 7, 0, 9, 7, 0, 10, 7, 0, 11, 7, 0, 12, 7, 0, 13, 7, 0, 14, 7, 0, 15, 2, 0, 65536, 1, 0, 65551, 1, 0, 131072, 1, 0, 131087, 1, 0, 196608, 4, 0, 196609, 7, 0, 196610, 7, 0, 196611, 7, 0, 196612, 7, 0, 196613, 7, 0, 196614, 7, 0, 196615, 7, 0, 196616, 7, 0, 196617, 7, 0, 196618, 7, 0, 196619, 7, 0, 196620, 7, 0, 196621, 7, 0, 196622, 7, 0, 196623, 3, 0 )
 
@@ -26,4 +28,3 @@ margin_right = 980.0
 margin_bottom = 210.0
 rect_scale = Vector2( 1.00199, 1 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "asdf"
