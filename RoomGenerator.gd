@@ -56,11 +56,20 @@ func make_2d_array():
 	for i in width:
 		array.append([]);
 		for j in height:
-			if(i == 0 or i == width-1):
+			if(i == 0 and j==0):
+				array[i].append(3);
+			elif(i == width-1 and j==0):
+				array[i].append(4)
+			elif(i == 0 and j==height-1):
+				array[i].append(5)
+			elif(i == width-1 and j==height-1):
+				array[i].append(6)
+			elif(i == 0 or i == width-1):
 				array[i].append(1);
-			if(j == 0 or j == height-1):
-				array[i].append(1);
-			array[i].append(fillRoom());
+			elif(j == 0 or j == height-1):
+				array[i].append(2);
+			else:
+				 array[i].append(fillRoom());
 	return array;
 
 

@@ -9,5 +9,5 @@
 
 [node name="Room Generator" type="Node" parent="."]
 script = ExtResource( 2 )
-width = 7
-height = 7
+width = 11
+height = 11
