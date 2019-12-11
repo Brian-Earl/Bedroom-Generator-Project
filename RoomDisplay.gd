@@ -37,7 +37,7 @@ func displayRoom(var roomAr):
 					button.set_position(Vector2(x*64, y*64))
 					button.set_size(Vector2(64,64))
 					button.show()
-					button.modulate = Color(255,255,255,0)
+					#button.modulate = Color(255,255,255,0)
 					button.connect("pressed",textDisplay,"changeText")
 					button.set_script(load("res://ItemButton.gd"))
 					button.set_desc(item.get("Desc"))

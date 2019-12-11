@@ -34,9 +34,10 @@ func _ready():
 #		for item in arr:
 #			print(item.get("Desc", "no dice"));
 		
+	makeBed(roomArr, 1,1);
 	#print(roomArr);
 	#print(roomArr);
-	var randRoom = rand_range(1,2)
+	var randRoom = rand_range(2,1)
 	
 	if(randRoom == 1):
 		roomType = ROOM.Bedroom;
@@ -47,7 +48,7 @@ func _ready():
 	#print(ROOM_OBJ.bed);
 	#print(ROOM_OBJ.empty);
 	
-	test = editDict(test, "test", "T", ["test","test"], "This is a test", "view");
+	
 	emit_signal("room_done",roomArr)
 	#print(test);
 
@@ -70,12 +71,13 @@ func make_2d_array():
 			elif(j == 0 or j == height-1):
 				array[i].append(2);
 			else:
-				 array[i].append(fillRoom());
+				 array[i].append(null);
 	return array;
 
 
 func fillRoom():
-	var randObj = rand_range(0, ROOM_OBJ.size())
+	var randObj = randi() % ROOM_OBJ.size();
+	
 	var newObj = roomBible.duplicate(true);
 	if(randObj >= 1):
 		return editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view");
@@ -113,6 +115,27 @@ func createDesc(var dictionary):
 	var desc = grammar.flatten("#bedsentence#");
 	return desc;
 
+
+func makeBed(var array, var startx, var starty):
+		var orientation = randi() % 2;
+		if(orientation == 0):
+			if(startx > 0 && starty > 0):
+				if(startx + 1 < width-1 && starty+2 < height - 1):
+					var newObj = roomBible.duplicate(true);
+				
+					for x in [startx, startx+1]:
+						for y in [starty, starty+1, starty + 2]:
+							array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view");
+			
+		elif(orientation == 1):
+			if(startx > 0 && starty > 0):
+				if(startx + 2 < width-1 && starty+1 < height - 1):
+					var newObj = roomBible.duplicate(true);
+				
+					for x in [startx, startx+1, startx + 2]:
+						for y in [starty, starty+1]:
+							array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view");
+				
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
