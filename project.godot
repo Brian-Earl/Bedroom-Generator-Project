@@ -42,4 +42,5 @@ enabled=PoolStringArray( "github-integration" )
 
 [rendering]
 
+environment/default_clear_color=Color( 0.247059, 0.247059, 0.247059, 1 )
 environment/default_environment="res://default_env.tres"

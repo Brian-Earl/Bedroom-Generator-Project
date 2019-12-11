@@ -11,7 +11,7 @@ func displayRoom(var roomAr):
 		tileMap = get_node("TileMap")
 	if textDisplay == null:
 		textDisplay = get_node("../TextDisplay")
-	tileMap.global_position.x = 1920/2 - (64 * roomAr.size()/2)
+	tileMap.get_parent().rect_global_position.x = (1920/2) - (64 * roomAr.size()/2)
 	var x = 0
 	var y = 0
 	for arr in roomAr:
@@ -34,8 +34,8 @@ func displayRoom(var roomAr):
 				else:
 					tileMap.set_cell(x,y, tileMap.tile_set.find_tile_by_name(item.get("Letter")))
 					var button = Button.new()
-					button.set_position(Vector2(x*64, y*64))
-					button.set_size(Vector2(64,64))
+					button.set_position(Vector2(x*64*tileMap.get_scale().x, y*64*tileMap.get_scale().y))
+					button.set_size(Vector2(64*tileMap.get_scale().x,64*tileMap.get_scale().y))
 					button.show()
 					#button.modulate = Color(255,255,255,0)
 					button.connect("pressed",textDisplay,"changeText")
