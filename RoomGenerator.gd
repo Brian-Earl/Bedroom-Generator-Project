@@ -27,6 +27,7 @@ enum ROOM_OBJ{
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize();
 	connect("room_done", RoomDisplay, "displayRoom")
 	roomArr = make_2d_array()
 #	for arr in roomArr:
