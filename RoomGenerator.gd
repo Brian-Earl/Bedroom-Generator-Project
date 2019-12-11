@@ -9,7 +9,7 @@ export (int) var height;
 var roomArr = [];
 var roomType;
 
-var roomBible = {"name": " ", "Letter": " ", "KeyWords": [], "Desc": " ", "onClick":" " }; 
+var roomBible = {"name": " ", "Letter": " ", "KeyWords": [], "Desc": " ", "onClick":" ", "Override": " " }; 
 
 onready var RoomDisplay = $"../FullDisplay/RoomDisplayer"
 signal room_done
@@ -35,6 +35,7 @@ func _ready():
 #			print(item.get("Desc", "no dice"));
 		
 	makeBed(roomArr, 1,1);
+	makeBed(roomArr, 1,4);
 	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(2,1)
@@ -86,7 +87,7 @@ func fillRoom():
 		return null;
 
 
-func editDict(var dictionary, var name = null, var letter = null, var keyword = null, var desc = null, var onClick = null):
+func editDict(var dictionary, var name = null, var letter = null, var keyword = null, var desc = null, var onClick = null, var over = null):
 		if(name != null):
 			dictionary["name"] = name;
 		if(letter != null):
@@ -97,7 +98,8 @@ func editDict(var dictionary, var name = null, var letter = null, var keyword = 
 			dictionary["Desc"] = createDesc(dictionary);
 		if(onClick != null):
 			dictionary["onClick"] = onClick;
-			
+		if(over != null):
+			dictionary["Override"] = over;	
 		return dictionary;
 	
 func createDesc(var dictionary):
@@ -117,16 +119,31 @@ func createDesc(var dictionary):
 
 
 func makeBed(var array, var startx, var starty):
+		
 		var orientation = randi() % 2;
+		var placeable = true;
 		if(orientation == 0):
 			if(startx > 0 && starty > 0):
 				if(startx + 1 < width-1 && starty+2 < height - 1):
 					var newObj = roomBible.duplicate(true);
-				
-					for x in [startx, startx+1]:
-						for y in [starty, starty+1, starty + 2]:
-							array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view");
-			
+					for x in [startx, startx+1, startx + 2]:
+						for y in [starty, starty+1]:
+							if(placeable):
+								if(typeof(array[y][x]) != TYPE_NIL):
+									if(array[y][x].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+					if(placeable):
+						for x in [startx, startx+1]:
+							for y in [starty, starty+1, starty + 2]:
+								array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view", false);
+					else:
+						makeBed(array,startx,starty);
+						print("overlap");
+				else:
+					makeBed(array,startx,starty);
+					print("can't fit");		
 		elif(orientation == 1):
 			if(startx > 0 && starty > 0):
 				if(startx + 2 < width-1 && starty+1 < height - 1):
@@ -134,8 +151,22 @@ func makeBed(var array, var startx, var starty):
 				
 					for x in [startx, startx+1, startx + 2]:
 						for y in [starty, starty+1]:
-							array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view");
-				
+							if(placeable):
+								if(typeof(array[y][x]) != TYPE_NIL):
+									if(array[y][x].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+					if(placeable):
+						for x in [startx, startx+1, startx + 2]:
+							for y in [starty, starty+1]:
+								array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view", false);
+					else:
+						makeBed(array,startx,starty);
+						print("overlap");
+				else:
+					makeBed(array,startx,starty);
+					print("can't fit");		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
