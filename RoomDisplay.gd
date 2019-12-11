@@ -11,6 +11,7 @@ func displayRoom(var roomAr):
 		tileMap = get_node("TileMap")
 	if textDisplay == null:
 		textDisplay = get_node("../TextDisplay")
+	tileMap.global_position.x = 1920/2 - (64 * roomAr.size()/2)
 	var x = 0
 	var y = 0
 	for arr in roomAr:
