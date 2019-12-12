@@ -362,10 +362,10 @@ func makeArmor(var array, orientation):
 							for y in [starty, starty+1, ]:
 								array[y][x] = editDict(newObj,"armoire", "A", ["big", "blue"], "big blue", "view", false);
 					else:
-						makeDesk(array,1);
+						makeArmor(array,1);
 						print("overlap");
 				else:
-					makeDesk(array,1);
+					makeArmor(array,1);
 					print("can't fit");		
 		elif(orie == 1):
 			if(startx > 0 && starty > 0):
@@ -385,10 +385,10 @@ func makeArmor(var array, orientation):
 							for y in [starty]:
 								array[y][x] = editDict(newObj,"armoire", "A", ["big", "blue"], "big blue", "view", false);
 					else:
-						makeDesk(array, 0);
+						makeArmor(array, 0);
 						print("overlap");
 				else:
-					makeDesk(array,0);
+					makeArmor(array,0);
 					print("can't fit");	
 
 func makeMirror(var array, orientation):
