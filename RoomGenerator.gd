@@ -352,7 +352,7 @@ func makeMirror(var array, orientation):
 				if(placeable):
 					for x in [startx]:
 						for y in [starty ]:
-							array[y][x] = editDict(newObj,"mirror", "w", ["big", "blue"], "big blue", "view", false);
+							array[y][x] = editDict(newObj,"mirror", "m", ["big", "blue"], "big blue", "view", false);
 				else:
 					makeMirror(array,1);
 					print("overlap");
