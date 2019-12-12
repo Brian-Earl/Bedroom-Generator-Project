@@ -35,7 +35,7 @@ func _ready():
 #		for item in arr:
 #			print(item.get("Desc", "no dice"));
 	randi() % perimeter+ 1;
-	makeBed(roomArr, 1,1,1);
+	makeBed(roomArr,1);
 	makeRug(roomArr, 1,1);
 	#print(roomArr);
 	#print(roomArr);
@@ -119,19 +119,51 @@ func createDesc(var dictionary):
 	return desc;
 
 
-func makeBed(var array, var startx, var starty, orientation):
+func makeBed(var array, orientation):
 		#0 is vertical
 		#1 is horizontal
-		
+		var startx = 0;
+		var starty = 0;
 		var placeable = true;
-		if(orientation == 0):
+		
+		var wallPlace = randi() % 4
+		var orie = randi() % 2;
+		
+		if(wallPlace == 0):
+			startx = randi() %(width-3) +1;
+			starty = 1
+			print("top", "x: ",startx, "y: ", starty);
+		elif(wallPlace == 1):
+			startx = 1;
+			starty = randi() % (height - 2) + 1;
+			print("LEft", "x: ", startx, "y: ", starty);	
+		elif(wallPlace == 2):
+			if(orie == 0):
+				startx = randi() %(width-1) +1;
+				starty = height - 4;
+				print("bot vert", "x: ", startx, "y: ", starty);
+			else:
+				startx = randi() %(width-1) +1;
+				starty = height - 3;
+				print("bot hori", "x: ", startx, "y: ", starty);
+		elif(wallPlace == 3):
+			if(orie == 0):
+				startx = width-3;
+				starty = randi() % (height - 3) + 1;
+				print("right vert", "x: " , startx, "y: " , starty);
+			else:
+				startx = width-4;
+				starty = randi() % (height - 2) + 1;
+				print("right hor", "x: " , startx, "y: " ,starty);
+			
+		if(orie == 0):
 			if(startx > 0 && starty > 0):
 				if(startx + 1 < width-1 && starty+2 < height - 1):
 					var newObj = roomBible.duplicate(true);
 					for x in [startx, startx+1, startx + 2]:
 						for y in [starty, starty+1]:
 							if(placeable):
-								if(typeof(array[y][x]) != TYPE_NIL):
+								if(typeof(array[y][x]) != TYPE_NIL and typeof(array[y][x]) != 2):
 									if(array[y][x].get("Override", true) == true):
 										placeable = true;
 									else:
@@ -141,12 +173,12 @@ func makeBed(var array, var startx, var starty, orientation):
 							for y in [starty, starty+1, starty + 2]:
 								array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view", false);
 					else:
-						makeBed(array,startx,starty,1);
+						makeBed(array,1);
 						print("overlap");
 				else:
-					makeBed(array,startx,starty,1);
+					makeBed(array,1);
 					print("can't fit");		
-		elif(orientation == 1):
+		elif(orie == 1):
 			if(startx > 0 && starty > 0):
 				if(startx + 2 < width-1 && starty+1 < height - 1):
 					var newObj = roomBible.duplicate(true);
@@ -154,7 +186,7 @@ func makeBed(var array, var startx, var starty, orientation):
 					for x in [startx, startx+1, startx + 2]:
 						for y in [starty, starty+1]:
 							if(placeable):
-								if(typeof(array[y][x]) != TYPE_NIL):
+								if(typeof(array[y][x]) != TYPE_NIL && typeof(array[y][x])!= 2):
 									if(array[y][x].get("Override", true) == true):
 										placeable = true;
 									else:
@@ -164,10 +196,10 @@ func makeBed(var array, var startx, var starty, orientation):
 							for y in [starty, starty+1]:
 								array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view", false);
 					else:
-						makeBed(array,startx,starty,0);
+						makeBed(array, 0);
 						print("overlap");
 				else:
-					makeBed(array,startx,starty,0);
+					makeBed(array,0);
 					print("can't fit");	
 					
 func makeRug(var array, var startx, var starty):
