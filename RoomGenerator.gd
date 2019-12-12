@@ -39,6 +39,8 @@ func _ready():
 	makeBed(roomArr, 1);
 	makeRug(roomArr, (randi()%width-3), (randi()%height-3));
 	makeMirror(roomArr, 1);
+	makeWindow(roomArr);
+	makeWindow(roomArr);
 	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(2,1)
@@ -358,6 +360,62 @@ func makeMirror(var array, orientation):
 					print("overlap");
 			else:
 				makeMirror(array,1);
+				print("can't fit");		
+		
+func makeWindow(var array):
+		#0 is vertical
+		#1 is horizontal
+		var startx = 0;
+		var starty = 0;
+		var placeable = true;
+		
+		var wallPlace = randi() % 4
+		
+		
+		if(wallPlace == 0):
+			startx = randi() %(width-2) + 1;
+			starty = 0;
+			
+			print("top", "x: ",startx, "y: ", starty);
+		elif(wallPlace == 1):
+			startx = 0;
+			starty = randi() % (height - 2)+1;
+			
+			print("LEft", "x: ", startx, "y: ", starty);	
+		elif(wallPlace == 2):
+			startx = randi() %(width-2)+1;
+			starty = height - 1;
+			
+			print("bot hori", "x: ", startx, "y: ", starty);
+		elif(wallPlace == 3):
+			
+			startx = width-1;
+			starty = randi() % (height - 2)+1;
+			print("right vert", "x: " , startx, "y: " , starty);
+			
+		
+		if(startx >= 0 && starty >= 0):
+			if(startx + 0 <= width-1 && starty+0 <= height - 1):
+				var newObj = roomBible.duplicate(true);
+				for x in [startx]:
+					for y in [starty]:
+						if(placeable):
+							if(typeof(array[y][x]) !=TYPE_NIL  and typeof(array[y][x]) != 2):
+								if(array[y][x].get("Override", true) == true):
+									placeable = true;
+								else:
+									placeable = false;
+							else:
+								placeable = true;
+				if(placeable):
+					for x in [startx]:
+						for y in [starty ]:
+							array[y][x] = editDict(newObj,"window", "W", ["big", "blue"], "big blue", "view", false);
+				else:
+					makeWindow(array);
+					print("overlap");
+			else:
+				makeWindow(array);
 				print("can't fit");		
 		
 					
