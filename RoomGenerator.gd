@@ -41,6 +41,7 @@ func _ready():
 	makeMirror(roomArr, 1);
 	makeWindow(roomArr);
 	makeWindow(roomArr);
+	makeDoor(roomArr);
 	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(2,1)
@@ -420,7 +421,91 @@ func makeWindow(var array):
 				makeWindow(array);
 				print("can't fit");		
 		
-					
+func makeDoor(var array):
+		#0 is vertical
+		#1 is horizontal
+		var startx = 0;
+		var starty = 0;
+		var placeable = true;
+		
+		var wallPlace = randi() % 4
+		
+		
+		if(wallPlace == 0):
+			startx = randi() %(width-2) + 1;
+			starty = 0;
+			
+			print("top", "x: ",startx, "y: ", starty);
+		elif(wallPlace == 1):
+			startx = 0;
+			starty = randi() % (height - 2)+1;
+			
+			print("LEft", "x: ", startx, "y: ", starty);	
+		elif(wallPlace == 2):
+			startx = randi() %(width-2)+1;
+			starty = height - 1;
+			
+			print("bot hori", "x: ", startx, "y: ", starty);
+		elif(wallPlace == 3):
+			
+			startx = width-1;
+			starty = randi() % (height - 2)+1;
+			print("right vert", "x: " , startx, "y: " , starty);
+			
+		
+		if(startx >= 0 && starty >= 0):
+			if(startx + 0 <= width-1 && starty+0 <= height - 1):
+				var newObj = roomBible.duplicate(true);
+				for x in [startx]:
+					for y in [starty]:
+						if(placeable):
+							if(wallPlace == 0):
+								if(typeof(array[y-1][x]) !=TYPE_NIL  and typeof(array[y-1][x]) != 2):
+									if(array[y-1][x].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+								else:
+									placeable = true;
+							elif(wallPlace == 1):
+								if(typeof(array[y][x+ 1]) !=TYPE_NIL  and typeof(array[y][x+1]) != 2):
+									if(array[y][x+1].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+								else:
+									placeable = true;
+								
+							elif(wallPlace == 2):
+								if(typeof(array[y-1][x]) !=TYPE_NIL  and typeof(array[y-1][x]) != 2):
+									if(array[y-1][x].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+								else:
+									placeable = true;
+								
+							elif(wallPlace == 3):
+								if(typeof(array[y][x- 1]) !=TYPE_NIL  and typeof(array[y][x-1]) != 2):
+									if(array[y][x-1].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+								else:
+									placeable = true;
+								
+								
+							
+				if(placeable):
+					for x in [startx]:
+						for y in [starty ]:
+							array[y][x] = editDict(newObj,"door", "D", ["big", "blue"], "big blue", "view", false);
+				else:
+					makeDoor(array);
+					print("overlap");
+			else:
+				makeDoor(array);
+				print("can't fit");		
 
 					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
