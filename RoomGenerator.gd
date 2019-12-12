@@ -5,6 +5,7 @@ extends Node
 # var b = "text"
 export (int) var width;
 export (int) var height;
+var perimeter = ((2*(width - 1)) + (2*(height - 3)));
 
 var roomArr = [];
 var roomType;
@@ -33,9 +34,9 @@ func _ready():
 #	for arr in roomArr:
 #		for item in arr:
 #			print(item.get("Desc", "no dice"));
-		
+	randi() % perimeter+ 1;
+	makeBed(roomArr, 1,1,1);
 	makeRug(roomArr, 1,1);
-	makeBed(roomArr, 1,4);
 	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(2,1)
@@ -118,9 +119,10 @@ func createDesc(var dictionary):
 	return desc;
 
 
-func makeBed(var array, var startx, var starty):
+func makeBed(var array, var startx, var starty, orientation):
+		#0 is vertical
+		#1 is horizontal
 		
-		var orientation = randi() % 2;
 		var placeable = true;
 		if(orientation == 0):
 			if(startx > 0 && starty > 0):
@@ -139,10 +141,10 @@ func makeBed(var array, var startx, var starty):
 							for y in [starty, starty+1, starty + 2]:
 								array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view", false);
 					else:
-						makeBed(array,startx,starty);
+						makeBed(array,startx,starty,1);
 						print("overlap");
 				else:
-					makeBed(array,startx,starty);
+					makeBed(array,startx,starty,1);
 					print("can't fit");		
 		elif(orientation == 1):
 			if(startx > 0 && starty > 0):
@@ -162,33 +164,29 @@ func makeBed(var array, var startx, var starty):
 							for y in [starty, starty+1]:
 								array[y][x] = editDict(newObj,"bed", "b", ["big", "blue"], "big blue", "view", false);
 					else:
-						makeBed(array,startx,starty);
+						makeBed(array,startx,starty,0);
 						print("overlap");
 				else:
-					makeBed(array,startx,starty);
+					makeBed(array,startx,starty,0);
 					print("can't fit");	
 					
 func makeRug(var array, var startx, var starty):
-		
-		var orientation = randi() % 2;
-		if(orientation == 0):
-			if(startx > 0 && starty > 0):
-				if(startx + 2 < width-1 && starty+2 < height - 1):
-					var newObj = roomBible.duplicate(true);
-					for x in [startx, startx+1, startx + 2]:
-						for y in [starty, starty+1, starty + 2]:
-							if(typeof(array[y][x]) == TYPE_NIL):
-								array[y][x] = editDict(newObj,"rug", "r", ["big", "blue"], "big blue", "view", true);
-					
-					
-		elif(orientation == 1):
-			if(startx > 0 && starty > 0):
-				if(startx + 2 < width-1 && starty+2 < height - 1):
-					var newObj = roomBible.duplicate(true);
-					for x in [startx, startx+1, startx + 2]:
-						for y in [starty, starty+1, starty + 2]:
-							if(typeof(array[y][x]) == TYPE_NIL):
-								array[y][x] = editDict(newObj,"rug", "r", ["big", "blue"], "big blue", "view", true);
+	if(startx > 0 && starty > 0):
+		if(startx + 2 < width-1 && starty+2 < height - 1):
+			var newObj = roomBible.duplicate(true);
+			for x in [startx, startx+1, startx + 2]:
+				for y in [starty, starty+1, starty + 2]:
+					if(typeof(array[y][x]) == TYPE_NIL):
+						array[y][x] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
+#			if(startx - 1 > 0):
+#				array[starty+1][startx -1] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
+#			if(starty - 1 > 0):
+#				array[starty-1][startx +1] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
+#			if(startx +3 < width-1 ):
+#				array[starty+1][startx +3] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
+#			if(starty +3 < height-1 ):
+#				array[starty+3][startx +1] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
+			
 					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
