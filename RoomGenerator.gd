@@ -111,12 +111,15 @@ func createDesc(var dictionary):
 	grammarTest["bedsentence"] = ["The bed has #colour# sheets with a #pillowFeel# pillow."]
 	grammarTest["rugsentence"] = ["A #colour# #rugtype# rug."]
 	grammarTest["desksentence"] = ["A #colour# #woodtype# desk."]
+	grammarTest["mirrorsentence"] = ["A #mirrordesc# mirror #mirrorlocation#."]
 	grammarTest["pillowFeel"] = ["soft", "hard", "flat", "lumpy", "cool", "warm"]
 	grammarTest["colour"] = ["#tone# #baseColour#"]
 	grammarTest["tone"] = ["dark", "light", "pale"]
 	grammarTest["baseColour"] = ["red", "green", "blue", "yellow"]
 	grammarTest["rugtype"] = ["shaggy", "wool", "silk", "Persian"]
 	grammarTest["woodtype"] = ["maple","oak","walnut","birch", "mahogany"]
+	grammarTest["mirrordesc"] = ["prestine", "clean", "dirty", "dusty", "scratched", "broken"]
+	grammarTest["mirrorlocation"] = ["hangs on the wall", "stands tall here"]
 	var grammar = Tracery.Grammar.new(grammarTest)
 	
 	grammar.addModifiers(Tracery.UniversalModifiers.getModifiers())
