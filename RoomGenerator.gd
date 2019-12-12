@@ -35,7 +35,8 @@ func _ready():
 #		for item in arr:
 #			print(item.get("Desc", "no dice"));
 	randi() % perimeter+ 1;
-	makeBed(roomArr,1);
+	makeDesk(roomArr,1);
+	makeBed(roomArr, 1);
 	makeRug(roomArr, 1,1);
 	#print(roomArr);
 	#print(roomArr);
@@ -219,6 +220,85 @@ func makeRug(var array, var startx, var starty):
 #			if(starty +3 < height-1 ):
 #				array[starty+3][startx +1] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
 			
+
+func makeDesk(var array, orientation):
+		#0 is vertical
+		#1 is horizontal
+		var startx = 0;
+		var starty = 0;
+		var placeable = true;
+		
+		var wallPlace = randi() % 4
+		var orie = randi() % 2;
+		
+		if(wallPlace == 0):
+			startx = randi() %(width-3) +1;
+			starty = 1;
+			orie = 1;
+			print("top", "x: ",startx, "y: ", starty);
+		elif(wallPlace == 1):
+			startx = 1;
+			starty = randi() % (height - 2) + 1;
+			orie = 0
+			print("LEft", "x: ", startx, "y: ", starty);	
+		elif(wallPlace == 2):
+			startx = randi() %(width-1) +1;
+			starty = height - 2;
+			orie = 1;
+			print("bot hori", "x: ", startx, "y: ", starty);
+		elif(wallPlace == 3):
+			orie = 0;
+			startx = width-2;
+			starty = randi() % (height - 2) + 1;
+			print("right vert", "x: " , startx, "y: " , starty);
+			
+		if(orie == 0):
+			if(startx > 0 && starty > 0):
+				if(startx + 0 < width-1 && starty+1 < height - 1):
+					var newObj = roomBible.duplicate(true);
+					for x in [startx]:
+						for y in [starty, starty+1]:
+							if(placeable):
+								if(typeof(array[y][x]) != TYPE_NIL and typeof(array[y][x]) != 2):
+									if(array[y][x].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+					if(placeable):
+						for x in [startx]:
+							for y in [starty, starty+1, ]:
+								array[y][x] = editDict(newObj,"desk", "d", ["big", "blue"], "big blue", "view", false);
+					else:
+						makeDesk(array,1);
+						print("overlap");
+				else:
+					makeDesk(array,1);
+					print("can't fit");		
+		elif(orie == 1):
+			if(startx > 0 && starty > 0):
+				if(startx + 1 < width-1 && starty+0 < height - 1):
+					var newObj = roomBible.duplicate(true);
+				
+					for x in [startx, startx+1]:
+						for y in [starty]:
+							if(placeable):
+								if(typeof(array[y][x]) != TYPE_NIL && typeof(array[y][x])!= 2):
+									if(array[y][x].get("Override", true) == true):
+										placeable = true;
+									else:
+										placeable = false;
+					if(placeable):
+						for x in [startx, startx+1]:
+							for y in [starty]:
+								array[y][x] = editDict(newObj,"desk", "d", ["big", "blue"], "big blue", "view", false);
+					else:
+						makeDesk(array, 0);
+						print("overlap");
+				else:
+					makeDesk(array,0);
+					print("can't fit");	
+					
+
 					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
