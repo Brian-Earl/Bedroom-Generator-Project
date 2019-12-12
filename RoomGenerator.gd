@@ -37,7 +37,7 @@ func _ready():
 	randi() % perimeter+ 1;
 	makeDesk(roomArr,1);
 	makeBed(roomArr, 1);
-	makeRug(roomArr, 1,1);
+	makeRug(roomArr, (randi()%width-3), (randi()%height-3));
 	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(2,1)
@@ -302,7 +302,7 @@ func makeDesk(var array, orientation):
 					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_key_just_pressed(KEY_R):
+	if Input.is_key_pressed(KEY_R):
 		get_tree().reload_current_scene()
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().change_scene("res://MainMenu.tscn")

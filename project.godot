@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Room Generator"
-run/main_scene="res://RoomGeneration.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -43,5 +43,5 @@ enabled=PoolStringArray( "github-integration" )
 [rendering]
 
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.247059, 0.247059, 0.247059, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
