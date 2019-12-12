@@ -112,7 +112,7 @@ func createDesc(var dictionary):
 	grammarTest["rugsentence"] = ["A #colour# #rugtype# rug."]
 	grammarTest["desksentence"] = ["A #colour# #woodtype# desk."]
 	grammarTest["mirrorsentence"] = ["A #mirrordesc# mirror #mirrorlocation#."]
-	grammarTest["windowsentence"] = ["The just out the window is a view of #windowview#."]
+	grammarTest["windowsentence"] = ["Just out the window is a view of #windowview#."]
 	grammarTest["pillowFeel"] = ["soft", "hard", "flat", "lumpy", "cool", "warm"]
 	grammarTest["colour"] = ["#tone# #baseColour#"]
 	grammarTest["tone"] = ["dark", "light", "pale"]
