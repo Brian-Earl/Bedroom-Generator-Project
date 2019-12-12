@@ -382,7 +382,7 @@ func makeArmor(var array, orientation):
 					if(placeable):
 						for x in [startx, startx+1]:
 							for y in [starty]:
-								array[y][x] = editDict(newObj,"desk", "d", ["big", "blue"], "big blue", "view", false);
+								array[y][x] = editDict(newObj,"armoire", "A", ["big", "blue"], "big blue", "view", false);
 					else:
 						makeDesk(array, 0);
 						print("overlap");
