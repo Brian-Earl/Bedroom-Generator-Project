@@ -38,6 +38,7 @@ func _ready():
 	makeDesk(roomArr,1);
 	makeBed(roomArr, 1);
 	makeRug(roomArr, (randi()%width-3), (randi()%height-3));
+	makeMirror(roomArr, 1);
 	#print(roomArr);
 	#print(roomArr);
 	var randRoom = rand_range(2,1)
@@ -213,7 +214,7 @@ func makeRug(var array, var startx, var starty):
 			var newObj = roomBible.duplicate(true);
 			for x in [startx, startx+1, startx + 2]:
 				for y in [starty, starty+1, starty + 2]:
-					if(typeof(array[y][x]) == TYPE_NIL):
+					if(typeof(array[y][x]) == TYPE_NIL ):
 						array[y][x] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
 #			if(startx - 1 > 0):
 #				array[starty+1][startx -1] = editDict(newObj,"rug", "Checkerboard_2", ["big", "blue"], "big blue", "view", true);
@@ -301,6 +302,61 @@ func makeDesk(var array, orientation):
 				else:
 					makeDesk(array,0);
 					print("can't fit");	
+					
+func makeMirror(var array, orientation):
+		#0 is vertical
+		#1 is horizontal
+		var startx = 0;
+		var starty = 0;
+		var placeable = true;
+		
+		var wallPlace = randi() % 4
+		
+		
+		if(wallPlace == 0):
+			startx = randi() %(width-1) +1;
+			starty = 1;
+			
+			print("top", "x: ",startx, "y: ", starty);
+		elif(wallPlace == 1):
+			startx = 1;
+			starty = randi() % (height - 1) + 1;
+			
+			print("LEft", "x: ", startx, "y: ", starty);	
+		elif(wallPlace == 2):
+			startx = randi() %(width-2) +1;
+			starty = height - 2;
+			
+			print("bot hori", "x: ", startx, "y: ", starty);
+		elif(wallPlace == 3):
+			
+			startx = width-2;
+			starty = randi() % (height - 2) + 1;
+			print("right vert", "x: " , startx, "y: " , starty);
+			
+		
+		if(startx > 0 && starty > 0):
+			if(startx + 0 < width-1 && starty+0 < height - 1):
+				var newObj = roomBible.duplicate(true);
+				for x in [startx]:
+					for y in [starty]:
+						if(placeable):
+							if(typeof(array[y][x]) != TYPE_NIL and typeof(array[y][x]) != 2):
+								if(array[y][x].get("Override", true) == true):
+									placeable = true;
+								else:
+									placeable = false;
+				if(placeable):
+					for x in [startx]:
+						for y in [starty ]:
+							array[y][x] = editDict(newObj,"mirror", "w", ["big", "blue"], "big blue", "view", false);
+				else:
+					makeMirror(array,1);
+					print("overlap");
+			else:
+				makeMirror(array,1);
+				print("can't fit");		
+		
 					
 
 					
