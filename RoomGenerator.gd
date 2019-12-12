@@ -34,7 +34,7 @@ func _ready():
 #		for item in arr:
 #			print(item.get("Desc", "no dice"));
 		
-	makeBed(roomArr, 1,1);
+	makeRug(roomArr, 1,1);
 	makeBed(roomArr, 1,4);
 	#print(roomArr);
 	#print(roomArr);
@@ -166,7 +166,30 @@ func makeBed(var array, var startx, var starty):
 						print("overlap");
 				else:
 					makeBed(array,startx,starty);
-					print("can't fit");		
+					print("can't fit");	
+					
+func makeRug(var array, var startx, var starty):
+		
+		var orientation = randi() % 2;
+		if(orientation == 0):
+			if(startx > 0 && starty > 0):
+				if(startx + 2 < width-1 && starty+2 < height - 1):
+					var newObj = roomBible.duplicate(true);
+					for x in [startx, startx+1, startx + 2]:
+						for y in [starty, starty+1, starty + 2]:
+							if(typeof(array[y][x]) == TYPE_NIL):
+								array[y][x] = editDict(newObj,"rug", "r", ["big", "blue"], "big blue", "view", true);
+					
+					
+		elif(orientation == 1):
+			if(startx > 0 && starty > 0):
+				if(startx + 2 < width-1 && starty+2 < height - 1):
+					var newObj = roomBible.duplicate(true);
+					for x in [startx, startx+1, startx + 2]:
+						for y in [starty, starty+1, starty + 2]:
+							if(typeof(array[y][x]) == TYPE_NIL):
+								array[y][x] = editDict(newObj,"rug", "r", ["big", "blue"], "big blue", "view", true);
+					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
