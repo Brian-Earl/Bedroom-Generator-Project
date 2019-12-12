@@ -39,12 +39,5 @@ custom_fonts/font = SubResource( 2 )
 text = "Room Generator
 By Brian and Justin"
 align = 1
-
-[node name="HSlider" type="HSlider" parent="Label"]
-margin_top = 750.0
-margin_right = 710.0
-margin_bottom = 876.0
-max_value = 50.0
-step = 25.0
 [connection signal="pressed" from="Start Button" to="." method="start"]
 [connection signal="pressed" from="Quit Button" to="." method="quit"]
