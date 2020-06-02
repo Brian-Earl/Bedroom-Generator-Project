@@ -1,12 +1,9 @@
-#Bedroom Generator
+# Bedroom Generator
 
-Created by Brian Earl and Justin Kreiselman
-Created using Godot Engine.
+Created by Brian Earl and Justin Kreiselman using the Godot Engine.
 
-The application procedurally generates a bedroom with furniture using grammars.
-The objects are randomly selected and placed in a bedroom and are represented as letters.
-You can hover over a letter to get a description of the object. 
+The application procedurally generates a bedroom with furniture using grammars with help from a port of [Tracery] (www.tracery.io/) thanks to [Althar93] (https://godotengine.org/asset-library/asset/388).
+Pieces of furnature are randomly generated and placed in a bedroom which are then represented as letters.
+Hovering over a letter displays a description of said object. 
 
-There is currently one style of room that can be selected.
-
-Press the R key to regenerate a room.
+Pressing the R key regenerates a new room.
